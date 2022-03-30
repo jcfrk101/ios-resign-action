@@ -18,7 +18,7 @@ security unlock-keychain -p "$KEYCHAIN_PASS" "$KEYCHAIN_PATH"
 security import cicert.p12 -P "$P12_PASS" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
 security list-keychain -d user -s "$KEYCHAIN_PATH"
 
-fastlane sigh resign "$IPA_PATH" --keychain_path "$KEYCHAIN_PATH" --signing_identity "$SIGNING_IDENTITY" --provisioning_profile "CI.mobileprovision"
+fastlane sigh resign "$IPA_PATH" --keychain_path "$KEYCHAIN_PATH" --signing_identity "$SIGNING_IDENTITY" --provisioning_profile "CI.mobileprovision" --use_app_entitlement
 
 # Clean up
 rm ~/Library/MobileDevice/Provisioning\ Profiles/CI.mobileprovision
