@@ -11,7 +11,7 @@ cp CI.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles
 # Regenerate the p12 from base64 and install in new temp keychain
 KEYCHAIN_PATH=$RUNNER_TEMP/temp_resign
 KEYCHAIN_PASS=$(echo "$(date)""$RANDOM" | base64)
-echo -n "$CERT_P12" | base64 --decode --output cicert.p12
+echo -n "$CERT_P12" | base64 --decode --input - --output cicert.p12
 security create-keychain -p "$KEYCHAIN_PASS" "$KEYCHAIN_PATH"
 security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
 security unlock-keychain -p "$KEYCHAIN_PASS" "$KEYCHAIN_PATH"
